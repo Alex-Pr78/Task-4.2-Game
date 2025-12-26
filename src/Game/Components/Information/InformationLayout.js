@@ -1,7 +1,9 @@
+import styles from './InformationLayout.module.css'
+
 export const InformationLayout = () => {
 	return (
 		<>
-			<div>Hello</div>
+			<div className={styles.color}>Hello</div>
 		</>
 	);
 };

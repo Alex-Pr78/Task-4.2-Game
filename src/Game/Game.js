@@ -69,7 +69,7 @@ export const Game = () => {
 			isGameEnded={isGameEnded}
 			isDraw={isDraw}
 			field={field}
-			onCellClic={handleCellClick}
+			onCellClick={handleCellClick}
 			onRestart={restartGame}
 		/>
 	);

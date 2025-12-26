@@ -2,12 +2,29 @@ import { InformationContainer } from './Components/Information/InformationContai
 import { FieldContainer } from './Components/Field/FieldContainer';
 import styles from './GameLayout.module.css';
 
-export const GameLayout = ({field, currentPlayer, isGameEnded, isDraw}) => {
+export const GameLayout = ({
+	field,
+	currentPlayer,
+	isGameEnded,
+	isDraw,
+	onCellClick,
+	onRestart,
+}) => {
 	return (
 		<div className={styles.game}>
-			<InformationContainer />
-			<FieldContainer field={field} isGameEnded={isGameEnded}/>
-			<button className={styles.restartBtn}>Начать заново</button>
+			<InformationContainer
+				currentPlayer={currentPlayer}
+				isGameEnded={isGameEnded}
+				isDraw={isDraw}
+			/>
+			<FieldContainer
+				field={field}
+				isGameEnded={isGameEnded}
+				onCellClick={onCellClick}
+			/>
+			<button className={styles.restartBtn} onClick={onRestart}>
+				Начать заново
+			</button>
 		</div>
 	);
 };

@@ -22,12 +22,55 @@ export const Game = () => {
 	const [isDraw, setIsDraw] = useState(false); // была ли ничья
 	const [field, setField] = useState(array); // игровое поле
 
+	// Функция проверяет все выигрышные линии
+	function checkWinner(field) {
+		return WIN_PATTERNS.some((pattern) => {
+			const [a, b, c] = pattern;
+			return field[a] && field[a] === field[b] && field[a] === field[c];
+		});
+	}
+
+	// Функция обработка клика на игровом поле
+	function handleCellClick(index) {
+		if (isGameEnded || isDraw) return;
+		if (field[index] !== '') return;
+
+		// копия текущего массива
+		const newField = [...field];
+		newField[index] = currentPlayer;
+		setField(newField);
+
+		// проверка, есть ли победитель
+		if (checkWinner(newField)) {
+			setIsGameEnded(true);
+			return;
+		}
+
+		// условие ничьей
+		if (newField.every((cell) => cell !== '')) {
+			setIsDraw(true);
+			return;
+		}
+		// меняем текущего игрока
+		setCurrentPlayer(currentPlayer === 'X' ? '0' : 'X');
+	}
+
+	// функция рестарт игры
+	function restartGame() {
+		setCurrentPlayer('X');
+		setIsGameEnded(false);
+		setIsDraw(false);
+		setField(array);
+	}
+
 	return (
 		<GameLayout
 			currentPlayer={currentPlayer}
 			isGameEnded={isGameEnded}
 			isDraw={isDraw}
 			field={field}
+			onCellClic={handleCellClick}
+			onRestart={restartGame}
 		/>
 	);
 };

@@ -1,4 +1,5 @@
-1. Добавил игровое в компонент FieldLayout
-2. GameLayout.module.css добавил стили
-3. FieldLayout.module.css добавил стили
-4. GameLayout добавил кнопку
+1. Добавленна функция (checkWinner) которая проверяет все выигрышные линии
+2. Добавленна функция (handleCellClick) обработка клика на игровом поле
+3. Добавленна функция (restartGame) рестарт игры
+4. Добавлены в props (handleCellClick, restartGame)
+5. Чтобы избежать ошибок добавлены PropTypes
